@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	FORWARDURL string = "https://requestb.in/1fnd5sx1"
+	FORWARDURL string = "https://hookb.in/v0PpXBRX"
 	PORT       int    = 7070
 )
 
@@ -58,5 +58,6 @@ func forward(request *http.Request, response http.ResponseWriter) {
 	// TODO: check why its receiving encoded response
 	body2, err := ioutil.ReadAll(forwardResponse.Body)
 	log.Printf("Response from server %s", body2)
+	response.Header().Set("Content-Type", forwardResponse.Header.Get("Content-Type"))
 	response.Write([]byte(body2))
 }
